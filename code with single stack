@@ -1,0 +1,43 @@
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.stack = [];
+    this.min = Infinity;
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function(val) {
+    if (val <= this.min) {
+        this.stack.push(this.min);
+        this.min = val;
+    }
+    this.stack.push(val);
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    const top = this.stack.pop();
+    if (top === this.min) {
+        this.min = this.stack.pop();
+    }
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.min;
+};
